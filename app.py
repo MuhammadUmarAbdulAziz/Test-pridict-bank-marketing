@@ -2,6 +2,7 @@ import streamlit as st
 import sys
 st.sidebar.write("Python version:", sys.version)
 import pandas as pd
+import xgboost as xgb
 import joblib
 
 
@@ -29,7 +30,9 @@ st.markdown("""
 # --- LOAD MODEL ---
 @st.cache_resource
 def load_model():
-    return joblib.load("best_xgb_model.pkl")
+    model = xgb.XGBClassifier()
+    model.load_model("model_xgb.json")
+    return model
 
 model = load_model()
 
