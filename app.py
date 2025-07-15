@@ -1,18 +1,15 @@
 import streamlit as st
-import sys
-st.sidebar.write("Python version:", sys.version)
 import pandas as pd
 import xgboost as xgb
-import joblib
 
-
-# --- CONFIGURASI HALAMAN ---
+# Konfigurasi Halaman
 st.set_page_config(
     page_title="Prediksi Nasabah Bank",
     page_icon="🏦",
     layout="centered"
 )
 
+# Tema dan Gaya CSS
 st.markdown("""
     <style>
         body {
@@ -27,7 +24,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- LOAD MODEL ---
+# Load model XGBoost dari file JSON
 @st.cache_resource
 def load_model():
     model = xgb.XGBClassifier()
@@ -39,7 +36,7 @@ model = load_model()
 st.title("🏦 Prediksi Ketertarikan Nasabah terhadap Produk Bank")
 st.markdown("Silakan isi data calon nasabah di bawah ini:")
 
-# --- INPUT FITUR ---
+# Input Fitur
 col1, col2 = st.columns(2)
 
 with col1:
@@ -66,8 +63,8 @@ with col2:
     euribor3m = st.number_input("Tingkat Euribor 3 Bulan", 0.0, 6.0, 4.8)
     nr_employed = st.number_input("Jumlah Pegawai", 4000.0, 5500.0, 5191.0)
 
-# --- PREDIKSI ---
-if st.button("Prediksi" ):
+# Prediksi
+if st.button("Prediksi"):
     input_df = pd.DataFrame([{
         "age": age,
         "job": job,
