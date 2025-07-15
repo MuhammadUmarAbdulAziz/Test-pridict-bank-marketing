@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+
+st.write(\"Current Directory:\", os.getcwd())
+st.write(\"Files in Dir:\", os.listdir())
+
 
 # --- CONFIGURASI HALAMAN ---
 st.set_page_config(
