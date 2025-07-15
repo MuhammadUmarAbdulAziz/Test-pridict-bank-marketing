@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import os
-
-st.write(\"Current Directory:\", os.getcwd())
-st.write(\"Files in Dir:\", os.listdir())
 
 
 # --- CONFIGURASI HALAMAN ---
@@ -34,6 +30,10 @@ def load_model():
     return joblib.load("best_xgb_model.pkl")
 
 model = load_model()
+
+import os
+st.write("Current Directory:", os.getcwd())
+st.write("Files in Dir:", os.listdir())
 
 st.title("🏦 Prediksi Ketertarikan Nasabah terhadap Produk Bank")
 st.markdown("Silakan isi data calon nasabah di bawah ini:")
