@@ -1,3 +1,5 @@
+import sys
+st.sidebar.write("Python version:", sys.version)
 import streamlit as st
 import pandas as pd
 import joblib
